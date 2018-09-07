@@ -1,0 +1,24 @@
+package amazon
+
+import (
+	"context"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/sqs"
+)
+
+// CreateSQS create sqs
+func CreateSQS(ctx context.Context, sess *session.Session, name string) (*sqs.CreateQueueOutput, error) {
+	svc := sqs.New(sess)
+	inputParams := sqs.CreateQueueInput{
+		QueueName: aws.String(name),
+	}
+	return svc.CreateQueue(&inputParams)
+}
+
+//ListSQS list sqs
+func ListSQS(ctx context.Context, sess *session.Session) (*sqs.ListQueuesOutput, error) {
+	svc := sqs.New(sess)
+	return svc.ListQueues(&sqs.ListQueuesInput{})
+}
