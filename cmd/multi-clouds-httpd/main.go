@@ -51,6 +51,17 @@ func (ctx *tags) POST() {
 	ctx.Data, ctx.APIOutput.Err = amazon.CreateTags(ctx.Context, ctx.Session, strings.Split(resources, ","), tags)
 }
 
+func (ctx *tags) DELETE() {
+	resources := ctx.GetQuery("resources", "")
+	tags := make(map[string]string)
+	ctx.APIOutput.Err = json.Unmarshal(ctx.GetBodyArgs(), &tags)
+	if ctx.APIOutput.Err != nil {
+		ctx.Set(101, "post body is not json!")
+		return
+	}
+	ctx.Data, ctx.APIOutput.Err = amazon.DeleteTags(ctx.Context, ctx.Session, strings.Split(resources, ","), tags)
+}
+
 func main() {
 	app := gohttp.Init()
 	app.Route("^/api/v1/aws/ec2$", &ec2{})

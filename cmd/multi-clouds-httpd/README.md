@@ -32,12 +32,17 @@ Query: -
 Body: -
 ```
 
-2. 修改ec2 tag
+2. 增加/修改ec2 tag
 ```
 URL: /api/v1/aws/ec2
 Method: POST
-Query: resources<string>, 多个资源时使用","区分, 注意不能有其他空白字符!
-Body: map[string]string
+Query: resources<string>   //多个资源时使用","区分, 注意不能有其他空白字符!
+Body: map[string]string     //当Key不存在时创建, 存在时覆盖
 ```
 [举例]
 
+3. 删除ec2 tag
+URL: /api/v1/aws/ec2
+Method: DELETE
+Query: resources<string> //多个资源时使用","区分, 注意不能有其他空白字符!
+Body: map[string]string  //只有Key,Value都匹配才执行删除操作,而且不删除的时候返回也是正常的！
