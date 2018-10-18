@@ -1,25 +1,32 @@
 package amazon
 
 import (
+	"context"
 	"testing"
+
+	"github.com/luopengift/log"
 )
 
 func Test_Session(t *testing.T) {
-	//sess, err := SessionWithRegion("cn-north-1")
-	//if err != nil {
-	//	t.Error("err")
-	//}
-	//ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
-	//defer cancel()
-	//results := make(chan *models.Host, 10)
+	sess, err := CreateSession(nil)
+	if err != nil {
+		t.Error("err")
+	}
+	t.Log(sess, err)
+}
 
-	//go func() {
-	//	for value := range results {
-	//		t.Log(value)
-	//	}
-	//}()
-	//if err := GetEc2(ctx, sess, results, nil); err != nil {
-	//	t.Errorf("%v", err)
-	//}
-	t.Log("======")
+func Test_DescribeAutoScalingGroups(t *testing.T) {
+	sess, err := CreateSession(map[string]string{
+		"region": "cn-northwest-1",
+	})
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(sess)
+	ctx := context.Background()
+	res, err := DescribeAutoScalingGroups(ctx, sess)
+	if err != nil {
+		t.Error(err)
+	}
+	log.Info("%v", res)
 }

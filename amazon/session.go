@@ -14,11 +14,6 @@ import (
 	"github.com/luopengift/log"
 )
 
-var (
-	accessKeyID     = ""
-	secretAccessKey = ""
-)
-
 // Session session
 type Session struct {
 	Regions         []string
@@ -26,12 +21,12 @@ type Session struct {
 	SecrteAccessKey string
 }
 
-// CreateSessionWithRegion xx
-func CreateSessionWithRegion(region, accessKeyID, secretAccessKey string) *session.Session {
-	sess := session.New(&aws.Config{
-		Region:      aws.String(region),
-		Credentials: credentials.NewStaticCredentials(accessKeyID, secretAccessKey, ""),
-	})
+// MustSession must session
+func MustSession(config map[string]string) *session.Session {
+	sess, err := CreateSession(config)
+	if err != nil {
+		panic(err)
+	}
 	return sess
 }
 
