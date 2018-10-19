@@ -9,7 +9,7 @@ import (
 )
 
 // DescribeAutoScalingGroups xx
-func DescribeAutoScalingGroups(ctx context.Context, sess *session.Session) ([]*autoscaling.Group, error) {
+func DescribeAutoScalingGroups(ctx context.Context, sess *session.Session, filters map[string]string) ([]*autoscaling.Group, error) {
 	var results []*autoscaling.Group
 	svc := autoscaling.New(sess)
 	inputParams := &autoscaling.DescribeAutoScalingGroupsInput{
