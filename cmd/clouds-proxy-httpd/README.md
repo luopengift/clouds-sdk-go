@@ -3,10 +3,6 @@
 ## 接口文档
 
 
-| id | comment | URL | method | query | body | return |
-| ------ | ------ | ------ |
-| ss |
-
 0. 返回结果
  ```
  Type: json
@@ -39,13 +35,14 @@ Method: POST
 Query: resources<string>   //多个资源时使用","区分, 注意不能有其他空白字符!
 Body: map[string]string     //当Key不存在时创建, 存在时覆盖
 ```
-[举例]
 
 3. 删除ec2 tag
+```
 URL: /api/v1/aws/ec2
 Method: DELETE
 Query: resources<string> //多个资源时使用","区分, 注意不能有其他空白字符!
 Body: map[string]string  //只有Key,Value都匹配才执行删除操作,而且不删除的时候返回也是正常的！
+```
 
 4. 获取rds信息
 ```
@@ -53,6 +50,7 @@ URL: /api/v1/aws/rds
 Method: GET
 Query: -
 Body: -
+```
 
 5. 获取autoscaling信息
 ```
@@ -60,4 +58,4 @@ URL: /api/v1/aws/autoscaling
 Method: GET
 Query: -
 Body: -
-
+```
