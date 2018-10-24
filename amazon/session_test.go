@@ -24,7 +24,7 @@ func Test_DescribeAutoScalingGroups(t *testing.T) {
 	}
 	t.Log(sess)
 	ctx := context.Background()
-	res, err := DescribeAutoScalingGroups(ctx, sess)
+	res, err := DescribeAutoScalingGroups(ctx, sess, nil)
 	if err != nil {
 		t.Error(err)
 	}
