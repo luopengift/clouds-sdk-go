@@ -59,3 +59,20 @@ Method: GET
 Query: -
 Body: -
 ```
+
+6. 获取sqs信息
+```
+URL: /api/v1/aws/sqs
+Method: GET
+Query: -
+Body: -
+```
+
+
+7. 创建sqs
+```
+URL: /api/v1/aws/sqs
+Method: POST
+Query: name<string>
+Body: -
+```

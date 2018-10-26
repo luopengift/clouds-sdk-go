@@ -14,13 +14,13 @@ func CreateSQS(ctx context.Context, sess *session.Session, name string) (*sqs.Cr
 	inputParams := sqs.CreateQueueInput{
 		QueueName: aws.String(name),
 	}
-	return svc.CreateQueue(&inputParams)
+	return svc.CreateQueueWithContext(ctx, &inputParams)
 }
 
 //ListSQS list sqs
 func ListSQS(ctx context.Context, sess *session.Session) (*sqs.ListQueuesOutput, error) {
 	svc := sqs.New(sess)
-	return svc.ListQueues(&sqs.ListQueuesInput{})
+	return svc.ListQueuesWithContext(ctx, &sqs.ListQueuesInput{})
 }
 
 // Send send sqs

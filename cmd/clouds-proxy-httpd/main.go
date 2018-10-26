@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/luopengift/clouds-sdk-go/cmd/multi-clouds-httpd/aws"
+	"github.com/luopengift/clouds-sdk-go/cmd/clouds-proxy-httpd/aws"
 	"github.com/luopengift/gohttp"
 )
 
@@ -12,6 +12,7 @@ func main() {
 	app.Route("^/api/v1/aws/ec2/tags$", &aws.Tags{})
 	app.Route("^/api/v1/aws/rds$", &aws.Rds{})
 	app.Route("^/api/v1/aws/autoscaling$", &aws.AutoScaling{})
+	app.Route("^/api/v1/aws/sqs$", &aws.Sqs{})
 	app.Route("^/api/v1/clouds/(?P<provider>[_-a-zA-Z0-9]*)/(?P<resource>[a-zA-Z0-9]*)/$", &aws.AWS{})
 	app.Run(":8888")
 }
