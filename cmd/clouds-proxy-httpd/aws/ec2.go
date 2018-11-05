@@ -15,6 +15,14 @@ func (ctx *Ec2) GET() {
 	ctx.Data, ctx.APIOutput.Err = amazon.DescribeInstances(ctx.Context, ctx.Session, nil)
 }
 
+type RI struct {
+	AWS
+}
+
+func (ctx *RI) GET() {
+	ctx.Data, ctx.APIOutput.Err = amazon.DescribeReservedInstances(ctx.Context, ctx.Session, nil)
+}
+
 type Tags struct {
 	AWS
 }

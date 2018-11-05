@@ -92,6 +92,14 @@ func DescribeInstances(ctx context.Context, sess *session.Session, filters map[s
 	return results, nil
 }
 
+func DescribeReservedInstances(ctx context.Context, sess *session.Session, filters map[string]string) (*ec2.DescribeReservedInstancesOutput, error) {
+	svc := ec2.New(sess)
+	inputParams := ec2.DescribeReservedInstancesInput{
+		Filters: ec2Filters(filters),
+	}
+	return svc.DescribeReservedInstancesWithContext(ctx, &inputParams)
+}
+
 // DescribeVolumes xx
 func DescribeVolumes(ctx context.Context, sess *session.Session, callback func(*ec2.Volume) error) error {
 	svc := ec2.New(sess)

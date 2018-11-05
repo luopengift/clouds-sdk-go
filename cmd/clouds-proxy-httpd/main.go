@@ -12,6 +12,7 @@ func main() {
 	app := gohttp.Init()
 	m := map[string]gohttp.Handler{
 		"ec2":         &aws.Ec2{},
+		"ri":          &aws.RI{},
 		"tags":        &aws.Tags{},
 		"rds":         &aws.Rds{},
 		"autoscaling": &aws.AutoScaling{},
