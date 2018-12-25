@@ -14,5 +14,8 @@ deploy: build
 	do \
 		scp -i ~/.ssh/id_rsa -P 36000 ${APP} ops@$$HOST:/tmp; \
 	done
+run: build
+	pkill $(APP)
+	nohup ./$(APP) >nohup.out 2>&1 &
 debug:
 	go run *.go -conf conf.yml
