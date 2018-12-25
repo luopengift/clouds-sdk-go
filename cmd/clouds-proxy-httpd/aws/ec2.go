@@ -7,27 +7,33 @@ import (
 	"github.com/luopengift/clouds-sdk-go/amazon"
 )
 
+// Ec2 ec2
 type Ec2 struct {
 	AWS
 }
 
+// GET method
 func (ctx *Ec2) GET() {
 	ctx.Data, ctx.APIOutput.Err = amazon.DescribeInstances(ctx.Context, ctx.Session, nil)
 }
 
-type RI struct {
+// Ec2RI Ec2RI
+type Ec2RI struct {
 	AWS
 }
 
-func (ctx *RI) GET() {
+// GET method
+func (ctx *Ec2RI) GET() {
 	ctx.Data, ctx.APIOutput.Err = amazon.DescribeReservedInstances(ctx.Context, ctx.Session, nil)
 }
 
-type Tags struct {
+// Ec2Tags Ec2Tags
+type Ec2Tags struct {
 	AWS
 }
 
-func (ctx *Tags) POST() {
+// POST method
+func (ctx *Ec2Tags) POST() {
 	resources := ctx.GetQuery("resources", "")
 	tags := make(map[string]string)
 	ctx.APIOutput.Err = json.Unmarshal(ctx.GetBodyArgs(), &tags)
@@ -38,7 +44,8 @@ func (ctx *Tags) POST() {
 	ctx.Data, ctx.APIOutput.Err = amazon.CreateTags(ctx.Context, ctx.Session, strings.Split(resources, ","), tags)
 }
 
-func (ctx *Tags) DELETE() {
+// DELETE method
+func (ctx *Ec2Tags) DELETE() {
 	resources := ctx.GetQuery("resources", "")
 	tags := make(map[string]string)
 	ctx.APIOutput.Err = json.Unmarshal(ctx.GetBodyArgs(), &tags)

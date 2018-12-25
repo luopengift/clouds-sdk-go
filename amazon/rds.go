@@ -25,3 +25,16 @@ func DescribeDBInstances(ctx context.Context, sess *session.Session, filters map
 	}
 	return results, nil
 }
+
+// DescribeReservedDBInstances describe ri db
+func DescribeReservedDBInstances(ctx context.Context, sess *session.Session, filters map[string]string) (*rds.DescribeReservedDBInstancesOutput, error) {
+	svc := rds.New(sess)
+	input := &rds.DescribeReservedDBInstancesInput{
+		// DBInstanceClass:    aws.String("db.t2.micro"),
+		// Duration:           aws.String("1y"),
+		// MultiAZ:            aws.Bool(false),
+		// OfferingType:       aws.String("No Upfront"),
+		// ProductDescription: aws.String("mysql"),
+	}
+	return svc.DescribeReservedDBInstances(input)
+}

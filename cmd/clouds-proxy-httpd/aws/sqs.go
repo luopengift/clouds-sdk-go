@@ -4,13 +4,17 @@ import (
 	"github.com/luopengift/clouds-sdk-go/amazon"
 )
 
+// Sqs sqs
 type Sqs struct {
 	AWS
 }
 
+// GET method
 func (ctx *Sqs) GET() {
 	ctx.Data, ctx.APIOutput.Err = amazon.ListSQS(ctx.Context, ctx.Session)
 }
+
+// POST method
 func (ctx *Sqs) POST() {
 	name := ctx.GetQuery("name", "")
 	if name == "" {

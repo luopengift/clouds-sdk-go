@@ -8,12 +8,14 @@ import (
 	"github.com/luopengift/gohttp"
 )
 
+// AWS AWS
 type AWS struct {
 	gohttp.APIHandler
 	*session.Session
 	context.Context
 }
 
+// Prepare prepare
 func (aws *AWS) Prepare() {
 	aws.Session = sess
 	aws.Context = context.Background()
@@ -21,6 +23,7 @@ func (aws *AWS) Prepare() {
 
 var sess *session.Session
 
+// Init init
 func Init() {
 	sess = amazon.MustSession(map[string]string{
 		"region": "cn-northwest-1",
