@@ -2,6 +2,7 @@ package aws
 
 import (
 	"github.com/luopengift/clouds-sdk-go/amazon"
+	"github.com/luopengift/framework"
 )
 
 // Sqs sqs
@@ -22,4 +23,8 @@ func (ctx *Sqs) POST() {
 		return
 	}
 	ctx.Data, ctx.APIOutput.Err = amazon.CreateSQS(ctx.Context, ctx.Session, name)
+}
+
+func init() {
+	framework.HttpdRoute("^/api/v1/aws/sqs", &Sqs{})
 }

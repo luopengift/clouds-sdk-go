@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/luopengift/clouds-sdk-go/amazon"
+	"github.com/luopengift/framework"
 )
 
 // Ec2 ec2
@@ -54,4 +55,10 @@ func (ctx *Ec2Tags) DELETE() {
 		return
 	}
 	ctx.Data, ctx.APIOutput.Err = amazon.DeleteTags(ctx.Context, ctx.Session, strings.Split(resources, ","), tags)
+}
+
+func init() {
+	framework.HttpdRoute("^/api/v1/aws/ec2$", &Ec2{})
+	framework.HttpdRoute("^/api/v1/aws/ec2/ri$", &Ec2RI{})
+	framework.HttpdRoute("^/api/v1/aws/ec2/tag", &Ec2Tags{})
 }

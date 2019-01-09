@@ -5,6 +5,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/luopengift/clouds-sdk-go/amazon"
+	"github.com/luopengift/framework"
 	"github.com/luopengift/gohttp"
 )
 
@@ -28,4 +29,8 @@ func Init() {
 	sess = amazon.MustSession(map[string]string{
 		"region": "cn-northwest-1",
 	})
+}
+
+func init() {
+	framework.HttpdRoute("^/api/v1/clouds/(?P<provider>[_-a-zA-Z0-9]*)/(?P<resource>[a-zA-Z0-9]*)/$", &AWS{})
 }
