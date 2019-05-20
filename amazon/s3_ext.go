@@ -36,7 +36,7 @@ func (r *customReader) ReadAt(p []byte, off int64) (int, error) {
 	// I have no idea why the read length need to be div 2,
 	// maybe the request read once when Sign and actually send call ReadAt again
 	// It works for me
-	log.Info("total read:%d    progress:%d%%\n", r.read/2, int(float32(r.read*100/2)/float32(r.size)))
+	log.Infof("total read:%d    progress:%d%%\n", r.read/2, int(float32(r.read*100/2)/float32(r.size)))
 
 	return n, err
 }

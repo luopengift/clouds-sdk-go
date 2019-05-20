@@ -98,6 +98,6 @@ func CreateSession(config map[string]string) (*session.Session, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Debug("%#v", value)
+	log.Debugf("%#v", value)
 	return sess, nil
 }
