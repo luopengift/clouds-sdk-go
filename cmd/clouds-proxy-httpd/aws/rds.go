@@ -13,7 +13,6 @@ type Rds struct {
 
 // GET method
 func (ctx *Rds) GET() {
-
 	var results []*rds.DBInstance
 	for _, sess := range ctx.Sessions {
 		var res []*rds.DBInstance
@@ -25,7 +24,6 @@ func (ctx *Rds) GET() {
 		results = append(results, res...)
 	}
 	ctx.Data = results
-
 }
 
 // RdsRI RdsRI
