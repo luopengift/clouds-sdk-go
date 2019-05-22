@@ -1,7 +1,6 @@
 package aws
 
 import (
-	"github.com/luopengift/clouds-sdk-go/amazon"
 	"github.com/luopengift/framework"
 )
 
@@ -12,7 +11,9 @@ type Elasticache struct {
 
 // GET method
 func (ctx *Elasticache) GET() {
-	ctx.Data, ctx.APIOutput.Err = amazon.DescribeElasticCache(ctx.Context, ctx.Session, nil)
+	ctx.Data = "TODO"
+
+	// ctx.Data, ctx.APIOutput.Err = amazon.DescribeElasticCache(ctx.Context, ctx.Session, nil)
 }
 
 // ElasticacheRI ElasticacheRI
@@ -22,7 +23,8 @@ type ElasticacheRI struct {
 
 // GET method
 func (ctx *ElasticacheRI) GET() {
-	ctx.Data, ctx.APIOutput.Err = amazon.DescribeReservedCacheNodes(ctx.Context, ctx.Session, nil)
+	ctx.Data = "TODO"
+	// ctx.Data, ctx.APIOutput.Err = amazon.DescribeReservedCacheNodes(ctx.Context, ctx.Session, nil)
 }
 
 func init() {

@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/kinesis"
 )
 
+// ListKinesis list kinesis
 func ListKinesis(ctx context.Context, sess *session.Session, filters map[string]string) ([]string, error) {
 	var res []string
 	svc := kinesis.New(sess)

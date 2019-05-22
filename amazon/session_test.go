@@ -28,5 +28,5 @@ func Test_DescribeAutoScalingGroups(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	log.Info("%v", res)
+	log.Infof("%v", res)
 }

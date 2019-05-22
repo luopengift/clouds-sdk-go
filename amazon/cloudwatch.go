@@ -26,6 +26,8 @@ func ListMertics(ctx context.Context, sess *session.Session, filters map[string]
 	})
 	return res, err
 }
+
+// GetMetricStatistics get metrics
 func GetMetricStatistics(ctx context.Context, sess *session.Session, filters map[string]string) (*cloudwatch.GetMetricStatisticsOutput, error) {
 	res, err := ListKinesis(ctx, sess, nil)
 	if err != nil {

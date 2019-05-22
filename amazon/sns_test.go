@@ -11,6 +11,6 @@ import (
 func Test_CreateTopic(t *testing.T) {
 	sess, err := CreateSession(nil)
 	res, err := ListSQS(context.Background(), sess)
-	log.Info("%v, %v", res, err)
+	log.Infof("%v, %v", res, err)
 	fmt.Println("ddd")
 }

@@ -1,6 +1,7 @@
 package aws
 
 import (
+	"github.com/aws/aws-sdk-go/service/rds"
 	"github.com/luopengift/clouds-sdk-go/amazon"
 	"github.com/luopengift/framework"
 )
@@ -12,7 +13,19 @@ type Rds struct {
 
 // GET method
 func (ctx *Rds) GET() {
-	ctx.Data, ctx.APIOutput.Err = amazon.DescribeDBInstances(ctx.Context, ctx.Session, nil)
+
+	var results []*rds.DBInstance
+	for _, sess := range ctx.Sessions {
+		var res []*rds.DBInstance
+		res, ctx.APIOutput.Err = amazon.DescribeDBInstances(ctx.Context, sess, nil)
+
+		if ctx.APIOutput.Err != nil {
+			return
+		}
+		results = append(results, res...)
+	}
+	ctx.Data = results
+
 }
 
 // RdsRI RdsRI
@@ -22,7 +35,8 @@ type RdsRI struct {
 
 // GET method
 func (ctx *RdsRI) GET() {
-	ctx.Data, ctx.APIOutput.Err = amazon.DescribeReservedDBInstances(ctx.Context, ctx.Session, nil)
+	ctx.Data = "TODO"
+	// ctx.Data, ctx.APIOutput.Err = amazon.DescribeReservedDBInstances(ctx.Context, ctx.Session, nil)
 }
 
 func init() {

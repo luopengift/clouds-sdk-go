@@ -12,23 +12,24 @@ import (
 // AWS AWS
 type AWS struct {
 	gohttp.APIHandler
-	*session.Session
+	Sessions []*session.Session
 	context.Context
 }
 
 // Prepare prepare
 func (aws *AWS) Prepare() {
-	aws.Session = sess
+	aws.Sessions = sessions
 	aws.Context = context.Background()
 }
 
-var sess *session.Session
+var sessions []*session.Session
 
 // Init init
 func Init() {
-	sess = amazon.MustSession(map[string]string{
-		"region": "cn-northwest-1",
-	})
+	for _, region := range []string{"cn-northwest-1", "cn-north-1"} {
+		sess := amazon.MustSession(map[string]string{"region": region})
+		sessions = append(sessions, sess)
+	}
 }
 
 func init() {
